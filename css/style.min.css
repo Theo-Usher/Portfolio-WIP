@@ -309,6 +309,7 @@ a {
 
 
 .jumbotron2 {
+  display: flex;
   padding-top: 80px;
   padding-bottom: 80px;
   background-repeat: no-repeat;
@@ -319,7 +320,7 @@ a {
   border-radius: 0;
   margin-bottom: 0;
   overflow: hidden;
-  min-height: 500px !important;
+  min-height: 500px;
   color: #fff; }
   @media (min-width: 1024px) {
     .jumbotron2 {
