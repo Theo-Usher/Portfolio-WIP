@@ -79,7 +79,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Open Sans Bold', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   margin-top: 0; }
 
 p {
@@ -199,7 +199,7 @@ a {
   border: none !important; }
 
 #header-navbar {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
@@ -214,45 +214,7 @@ a {
     position: absolute; }
   #header-navbar .container {
     padding-top: 15px;
-    padding-bottom: 15px; 
-    background-color: #203A43;
-    position: relative; }
-#header-navbar .triangle-up-left {
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    top: 0px;
-    left: -70px;
-    overflow: hidden; }
- #header-navbar .triangle-up-left:after {
-      content: "";
-      position: absolute;
-      width: 142px;
-      height: 142px;
-      background: #203A43;
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-      top: -101px;
-      left: -1px;}
-#header-navbar .triangle-up-right {
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    top: 0px;
-    right: -70px;
-    overflow: hidden; }
-#header-navbar .triangle-up-right:after {
-      content: "";
-      position: absolute;
-      width: 142px;
-      height: 142px;
-      background: #203A43;
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-      top: -101px;
-      right: -1px; }
+    padding-bottom: 15px; }
 
 .navbar-brand {
   font-size: 20px;
@@ -272,6 +234,66 @@ a {
 .navbar-toggler {
   font-size: 3rem;
   color: #fff; }
+
+.not-on-top #header-navbar {
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: 0; }
+  .not-on-top #header-navbar .container {
+    background-color: #203A43;
+    position: relative; }
+  .not-on-top #header-navbar .triangle-up-left {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 0px;
+    left: -70px;
+    overflow: hidden; }
+    .not-on-top #header-navbar .triangle-up-left:after {
+      content: "";
+      position: absolute;
+      width: 142px;
+      height: 142px;
+      background: #203A43;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      top: -101px;
+      left: -1px;
+      -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+      -webkit-transition: all 500ms ease;
+      transition: all 500ms ease; }
+  .not-on-top #header-navbar .triangle-up-right {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 0px;
+    right: -70px;
+    overflow: hidden; }
+    .not-on-top #header-navbar .triangle-up-right:after {
+      content: "";
+      position: absolute;
+      width: 142px;
+      height: 142px;
+      background: #203A43;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      top: -101px;
+      right: -1px;
+      -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+      -webkit-transition: all 500ms ease;
+      transition: all 500ms ease; }
 
 .jumbotron {
   padding-top: 80px;
@@ -302,41 +324,6 @@ a {
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     opacity: 0.9;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0; }
-
-
-.jumbotron2 {
-  padding-top: 80px;
-  padding-bottom: 80px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: 50% 50%;
-  position: relative;
-  border-radius: 0;
-  margin-bottom: 0;
-  overflow: hidden;
-  min-height: 500px;
-  color: #fff; }
-  @media (min-width: 1024px) {
-    .jumbotron2 {
-      min-height: 97vh; } }
-  .jumbotron2 .container {
-    position: relative; }
-  .jumbotron2:before {
-    position: absolute;
-    display: block;
-    content: "";
-    background: #0F2027;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    opacity: .0;
     top: 0;
     bottom: 0;
     left: 0;
@@ -532,9 +519,6 @@ a {
 .single-layout .jumbotron:before {
   background-color: rgba(255, 255, 255, 0.9); }
 
-.single-layout .jumbotron2:before {
-  background-color: rgba(255, 255, 255, 0.9); }
-
 .blog-content img.float-left {
   margin: 15px 15px 15px 0; }
 
@@ -721,16 +705,6 @@ section.bg-grey .square-right:after {
 
 @media (max-width: 575px) {
   .jumbotron {
-    min-height: 97vh; }
-  section .triangle-up-left {
-    left: -46px; }
-  section .triangle-up-right {
-    right: -46px; }
-  .client-item img {
-    width: 100%; } }
-
-@media (max-width: 575px) {
-  .jumbotron2 {
     min-height: 97vh; }
   section .triangle-up-left {
     left: -46px; }
