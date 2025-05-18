@@ -5,8 +5,9 @@ Theo Usher's Portfolio. By Theo Usher.
 
 
 CREDITS:
-Original Design by FreeHTML5.co. Edited by Theo Usher
+Original Design by FreeHTML5.co
 https://freehtml5.co/gaming
+Edited by Theo Usher
 
 
 Bootstrap
