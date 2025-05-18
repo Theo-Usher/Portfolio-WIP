@@ -284,7 +284,6 @@ a {
   border-radius: 0;
   margin-bottom: 0;
   overflow: hidden;
-  min-height: 500px;
   color: #fff; }
   @media (min-width: 1024px) {
     .jumbotron {
