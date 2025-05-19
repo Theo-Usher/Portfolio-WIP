@@ -322,7 +322,7 @@ a {
   overflow: hidden;
   min-height: 500px;
   color: #fff; }
-  @media (min-width: 1024px) {
+  @media (min-width: 10px) {
     .jumbotron2 {
       min-height: 97vh; } }
   .jumbotron2 .container {
