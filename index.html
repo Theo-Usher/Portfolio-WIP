@@ -70,7 +70,8 @@
         <div class="triangle-up-right"></div>
     </div>
     
-</nav>		<div class="jumbotron d-flex align-items-center" style="background-image: url(./img/hero.jpg)" id="title">
+</nav>
+		<div class="jumbotron d-flex align-items-center" style="background-image: url(./img/hero.jpg)" id="title">
   <div class="container text-center">
     <h1 class="display-2 mb-4">  <a href="mailto:tsu2107@columbia.edu" target="_blank">Theo Usher's</a> Portfolio</h1>
     <p>
@@ -847,5 +848,43 @@
 
 	<!-- Main JS -->
 	<script src="js/app.min.js "></script>
+
+<!-- Isotope Fix Script -->
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script>
+  window.addEventListener('load', function () {
+    var $grid = $('.grid-portfolio').isotope({
+      itemSelector: '.grid-item',
+      percentPosition: true,
+      masonry: {
+        columnWidth: '.grid-sizer',
+        gutter: '.gutter-sizer'
+      }
+    });
+
+    // Wait for images AND videos to load
+    const allVideos = document.querySelectorAll('.grid-item-wrapper video');
+    const videoPromises = Array.from(allVideos).map(video => {
+      return new Promise(resolve => {
+        // Consider video "loaded" when metadata is ready (dimensions known)
+        video.onloadedmetadata = () => resolve();
+        // Fallback timeout in case it doesn't fire
+        setTimeout(() => resolve(), 1500);
+      });
+    });
+
+    imagesLoaded('.grid-portfolio', function () {
+      Promise.all(videoPromises).then(() => {
+        $grid.isotope('layout');
+      });
+    });
+
+    // Failsafe re-layout after a delay
+    setTimeout(() => {
+      $grid.isotope('layout');
+    }, 2000);
+  });
+</script>
+
 </body>
 </html>
