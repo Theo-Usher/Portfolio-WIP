@@ -850,5 +850,18 @@
   });
 </script>
 
+<script>
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) {
+      document.querySelectorAll('video[autoplay]').forEach(video => {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      });
+    }
+  });
+</script>
+</body>
+</html>
+
 </body>
 </html>
