@@ -751,6 +751,9 @@ section.bg-grey .square-right:after {
 @media (max-width: 767px) {
   .jumbotron, .jumbotron2 {
     background-attachment: scroll !important;
+    background-position: center top;
+    background-size: contain !important;
+    background-repeat: no-repeat;
   }
 }
 
