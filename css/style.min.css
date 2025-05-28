@@ -759,9 +759,9 @@ section.bg-grey .square-right:after {
 }
 
 @media (max-width: 767px) {
-  #skillsets {
+  body {
     background-attachment: scroll !important;
-    background-size: cover !important;
     background-position: center center !important;
+    background-size: cover !important;
   }
 }
