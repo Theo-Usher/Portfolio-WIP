@@ -765,3 +765,9 @@ section.bg-grey .square-right:after {
     background-size: cover !important;
   }
 }
+
+@media (max-width: 767px) {
+  body:after {
+    position: absolute !important;
+  }
+}
