@@ -761,23 +761,13 @@ section.bg-grey .square-right:after {
 @media (max-width: 767px) {
   body {
     background-attachment: scroll !important;
-    background-position: center center !important;
-    background-size: cover !important;
+    background-position: center top !important;
     background-repeat: no-repeat !important;
+    background-size: contain !important;
   }
 
-  body::after {
-    position: absolute !important;
-    background-attachment: scroll !important;
-    background-size: cover !important;
-    background-position: center center !important;
-    content: "" !important;
-    display: block !important;
-  }
-}
-
-@media (max-width: 767px) {
   body::after {
     display: none !important;
   }
 }
+
