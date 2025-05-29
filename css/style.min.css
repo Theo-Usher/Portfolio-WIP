@@ -767,7 +767,7 @@ section.bg-grey .square-right:after {
     background-repeat: no-repeat !important;
     min-height: 50vh !important; 
     position: relative !important;
-    right: 30px;
+    left: 200px;
 
   }
 
