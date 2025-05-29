@@ -765,7 +765,7 @@ section.bg-grey .square-right:after {
     background-position: center center !important;
     background-attachment: scroll !important;
     background-repeat: no-repeat !important;
-    min-height: 97vh !important; 
+    min-height: 50vh !important; 
     position: relative !important;
   }
 
@@ -786,8 +786,6 @@ section.bg-grey .square-right:after {
     z-index: 1;
   }
 }
-#skillsets {
-  border: 2px solid red;
-}
+
 
 
