@@ -762,12 +762,11 @@ section.bg-grey .square-right:after {
   #skillsets {
     background-image: url('./../img/bg.jpg') !important;
     background-size: cover !important;
-    background-position: center center !important;
+    background-position: 200px center !important;
     background-attachment: scroll !important;
     background-repeat: no-repeat !important;
     min-height: 50vh !important; 
     position: relative !important;
-    left: 200px;
 
   }
 
