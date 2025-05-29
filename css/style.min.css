@@ -760,6 +760,7 @@ section.bg-grey .square-right:after {
 
 @media (max-width: 767px) {
   body {
+    position: relative !important;
     background-image: url('./../img/bg.jpg') !important;
     background-attachment: scroll !important;
     background-position: 50% 50% !important;
@@ -779,4 +780,3 @@ section.bg-grey .square-right:after {
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027) !important;
   }
 }
-
