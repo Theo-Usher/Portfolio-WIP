@@ -767,6 +767,8 @@ section.bg-grey .square-right:after {
     background-repeat: no-repeat !important;
     min-height: 50vh !important; 
     position: relative !important;
+    right: 30px;
+
   }
 
   #skillsets::before {
@@ -785,10 +787,6 @@ section.bg-grey .square-right:after {
     position: relative;
     z-index: 1;
   }
-
-#skillsets {
-  border: 2px solid red;
-}
 
 }
 
