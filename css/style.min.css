@@ -775,3 +775,9 @@ section.bg-grey .square-right:after {
     display: block !important;
   }
 }
+
+@media (max-width: 767px) {
+  body::after {
+    display: none !important;
+  }
+}
