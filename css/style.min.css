@@ -393,6 +393,7 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
+  pointer-events: auto;
   transition: all .3s ease; }
 
 .lightcase-icon-close:before {
@@ -668,6 +669,12 @@ section.bg-grey .square-right:after {
     line-height: 1;
     vertical-align: top; }
 
+.highlighted {
+  background-color: #2cb4c9 !important;
+  color: #fff !important;
+}
+
+
 @media (min-width: 768px) and (max-width: 1200px) {
   .boxed-page {
     margin-right: 30px;
@@ -746,6 +753,8 @@ section.bg-grey .square-right:after {
     object-fit: cover; /* Ensures the video fills its container without distortion */
     display: block;
     margin: 0 auto; /* Centers the video */
+    pointer-events: none;
+
 }
 
 @media (max-width: 767px) {
@@ -787,7 +796,10 @@ section.bg-grey .square-right:after {
     z-index: 1;
   }
 
+
 }
+
+
 
 
 
