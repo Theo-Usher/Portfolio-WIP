@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 101
+        <br> 10:07
         </p>
         <p2 align-items-center>
 
@@ -922,23 +922,16 @@ document.addEventListener('DOMContentLoaded', function () {
       let maxVisible = 0;
 
       entries.forEach(entry => {
-        const height = entry.intersectionRect.height;
+        const visibleHeight = entry.intersectionRect.height;
         const ratio = entry.intersectionRatio;
 
-        // Prefer highly visible, intersecting elements
-        if (entry.isIntersecting && ratio > 0.4 && height > maxVisible) {
-          maxVisible = height;
+        // Pick best candidate
+        if (entry.isIntersecting && ratio > 0.4 && visibleHeight > maxVisible) {
+          maxVisible = visibleHeight;
           bestEntry = entry;
-        }
-
-        // If the active element is gone from view, clear it
-        if (activeEl === entry.target && !entry.isIntersecting) {
-          activeEl.classList.remove('active');
-          activeEl = null;
         }
       });
 
-      // If a new element should be active
       if (bestEntry && bestEntry.target !== activeEl) {
         if (activeEl) {
           activeEl.classList.remove('active');
