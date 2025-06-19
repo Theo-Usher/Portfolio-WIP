@@ -392,6 +392,8 @@ a {
 .grid-item-wrapper.active .grid-info {
   top: 50%;
   opacity: 1;
+  pointer-events: auto !important;
+
 }
 
 .grid-item-wrapper .grid-info {
@@ -828,5 +830,13 @@ section.bg-grey .square-right:after {
   }
 }
 
+.grid-item-wrapper.active .grid-info {
+  pointer-events: auto !important;
+  z-index: 2; /* Ensure overlay is on top */
+}
+
+.grid-item-wrapper .grid-info {
+  pointer-events: none;
+}
 
 
