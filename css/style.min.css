@@ -832,7 +832,7 @@ section.bg-grey .square-right:after {
 
 .grid-item-wrapper.active .grid-info {
   pointer-events: auto !important;
-  z-index: 2; /* Ensure overlay is on top */
+  z-index: 3;
 }
 
 .grid-item-wrapper .grid-info {
