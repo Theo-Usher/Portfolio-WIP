@@ -929,10 +929,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
       items.forEach(el => el.classList.remove('active'));
 
-      if (bestEntry && bestEntry.isIntersecting) {
-        bestEntry.target.classList.add('active');
-      }
-    }, {
+if (bestEntry && bestEntry.isIntersecting) {
+  const visibleRatio = bestEntry.intersectionRatio;
+  if (visibleRatio > 0.4) { // Only activate if at least 40% of item is visible
+    bestEntry.target.classList.add('active');
+  }
+}    }, {
       threshold: Array.from({ length: 101 }, (_, i) => i / 100),
       rootMargin: '-30% 0px -30% 0px'
     });
@@ -940,6 +942,16 @@ document.addEventListener('DOMContentLoaded', function () {
     items.forEach(item => observer.observe(item));
   }
 });
+</script>
+<script>
+    if (window.innerWidth < 768) {
+  // Use IntersectionObserver logic...
+  // AND disable pointer events on grid-info to prevent tapping
+  const gridInfoElements = document.querySelectorAll('.grid-info');
+  gridInfoElements.forEach(el => {
+    el.style.pointerEvents = 'none';
+  });
+}
 </script>
 </body>
 </html>
