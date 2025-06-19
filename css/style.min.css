@@ -816,7 +816,17 @@ section.bg-grey .square-right:after {
 
 }
 
+@media (max-width: 767px) {
+  .grid-item-wrapper:hover .grid-info {
+    opacity: 0 !important;
+    top: 0 !important;
+    pointer-events: none !important;
+  }
 
+  .grid-item-wrapper:hover::before {
+    opacity: 0 !important;
+  }
+}
 
 
 
