@@ -910,54 +910,50 @@
     });
   });
 </script>
+
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    if (window.innerWidth < 768) {
-      const items = document.querySelectorAll('.grid-item-wrapper');
-      let activeEl = null;
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.innerWidth < 768) {
+    const items = document.querySelectorAll('.grid-item-wrapper');
+    let activeEl = null;
 
-      const observer = new IntersectionObserver((entries) => {
-        let bestEntry = null;
-        let maxVisible = 0;
+    const observer = new IntersectionObserver((entries) => {
+      let bestEntry = null;
+      let maxVisible = 0;
 
-        entries.forEach(entry => {
-          const visibleHeight = entry.intersectionRect.height;
-          const ratio = entry.intersectionRatio;
+      entries.forEach(entry => {
+        const height = entry.intersectionRect.height;
+        const ratio = entry.intersectionRatio;
 
-          // Choose the most visible item that's intersecting and over 40% visible
-          if (entry.isIntersecting && ratio > 0.4 && visibleHeight > maxVisible) {
-            maxVisible = visibleHeight;
-            bestEntry = entry;
-          }
-
-          // If the current active element is no longer visible, remove active
-            if (activeEl === entry.target && !entry.isIntersecting) {
-            // Delay removal slightly to allow for taps
-            setTimeout(() => {
-                if (!document.activeElement.closest('.grid-item-wrapper.active')) {
-                activeEl.classList.remove('active');
-                activeEl = null;
-                }
-            }, 250);
-            }
-        });
-
-        // If a new bestEntry is found and it's not the current active one, switch
-        if (bestEntry && bestEntry.target !== activeEl) {
-          if (activeEl) {
-            activeEl.classList.remove('active');
-          }
-          bestEntry.target.classList.add('active');
-          activeEl = bestEntry.target;
+        // Prefer highly visible, intersecting elements
+        if (entry.isIntersecting && ratio > 0.4 && height > maxVisible) {
+          maxVisible = height;
+          bestEntry = entry;
         }
-      }, {
-        threshold: Array.from({ length: 101 }, (_, i) => i / 100),
-        rootMargin: '-30% 0px -30% 0px'
+
+        // If the active element is gone from view, clear it
+        if (activeEl === entry.target && !entry.isIntersecting) {
+          activeEl.classList.remove('active');
+          activeEl = null;
+        }
       });
 
-      items.forEach(item => observer.observe(item));
-    }
-  });
+      // If a new element should be active
+      if (bestEntry && bestEntry.target !== activeEl) {
+        if (activeEl) {
+          activeEl.classList.remove('active');
+        }
+        bestEntry.target.classList.add('active');
+        activeEl = bestEntry.target;
+      }
+    }, {
+      threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+      rootMargin: '-30% 0px -30% 0px'
+    });
+
+    items.forEach(item => observer.observe(item));
+  }
+});
 </script>
 
 </body>
