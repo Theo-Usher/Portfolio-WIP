@@ -909,5 +909,37 @@
     });
   });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.innerWidth < 768) {
+    const items = document.querySelectorAll('.grid-item-wrapper');
+
+    const observer = new IntersectionObserver((entries) => {
+      let maxVisible = 0;
+      let bestEntry = null;
+
+      entries.forEach(entry => {
+        const visibleHeight = entry.intersectionRect.height;
+
+        if (visibleHeight > maxVisible) {
+          maxVisible = visibleHeight;
+          bestEntry = entry;
+        }
+      });
+
+      items.forEach(el => el.classList.remove('active'));
+
+      if (bestEntry && bestEntry.isIntersecting) {
+        bestEntry.target.classList.add('active');
+      }
+    }, {
+      threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+      rootMargin: '-30% 0px -30% 0px'
+    });
+
+    items.forEach(item => observer.observe(item));
+  }
+});
+</script>
 </body>
 </html>
