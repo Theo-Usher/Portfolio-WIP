@@ -79,6 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
+        <br> TEST: NON FLICKERING ITEMS
         </p>
         <p2 align-items-center>
 
@@ -910,38 +911,48 @@
   });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  if (window.innerWidth < 768) {
-    const items = document.querySelectorAll('.grid-item-wrapper');
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.innerWidth < 768) {
+      const items = document.querySelectorAll('.grid-item-wrapper');
+      let activeEl = null;
 
-    const observer = new IntersectionObserver((entries) => {
-      let maxVisible = 0;
-      let bestEntry = null;
+      const observer = new IntersectionObserver((entries) => {
+        let bestEntry = null;
+        let maxVisible = 0;
 
-      entries.forEach(entry => {
-        const visibleHeight = entry.intersectionRect.height;
+        entries.forEach(entry => {
+          const visibleHeight = entry.intersectionRect.height;
+          const ratio = entry.intersectionRatio;
 
-        if (visibleHeight > maxVisible) {
-          maxVisible = visibleHeight;
-          bestEntry = entry;
+          // Choose the most visible item that's intersecting and over 40% visible
+          if (entry.isIntersecting && ratio > 0.4 && visibleHeight > maxVisible) {
+            maxVisible = visibleHeight;
+            bestEntry = entry;
+          }
+
+          // If the current active element is no longer visible, remove active
+          if (activeEl === entry.target && !entry.isIntersecting) {
+            activeEl.classList.remove('active');
+            activeEl = null;
+          }
+        });
+
+        // If a new bestEntry is found and it's not the current active one, switch
+        if (bestEntry && bestEntry.target !== activeEl) {
+          if (activeEl) {
+            activeEl.classList.remove('active');
+          }
+          bestEntry.target.classList.add('active');
+          activeEl = bestEntry.target;
         }
+      }, {
+        threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+        rootMargin: '-30% 0px -30% 0px'
       });
 
-      items.forEach(el => el.classList.remove('active'));
-
-if (bestEntry && bestEntry.isIntersecting) {
-  const visibleRatio = bestEntry.intersectionRatio;
-  if (visibleRatio > 0.4) { // Only activate if at least 40% of item is visible
-    bestEntry.target.classList.add('active');
-  }
-}    }, {
-      threshold: Array.from({ length: 101 }, (_, i) => i / 100),
-      rootMargin: '-30% 0px -30% 0px'
-    });
-
-    items.forEach(item => observer.observe(item));
-  }
-});
+      items.forEach(item => observer.observe(item));
+    }
+  });
 </script>
 <script>
     if (window.innerWidth < 768) {
