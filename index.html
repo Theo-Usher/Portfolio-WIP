@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 4454
+        <br> 1234
         </p>
         <p2 align-items-center>
 
@@ -931,10 +931,15 @@
           }
 
           // If the current active element is no longer visible, remove active
-          if (activeEl === entry.target && !entry.isIntersecting) {
-            activeEl.classList.remove('active');
-            activeEl = null;
-          }
+            if (activeEl === entry.target && !entry.isIntersecting) {
+            // Delay removal slightly to allow for taps
+            setTimeout(() => {
+                if (!document.activeElement.closest('.grid-item-wrapper.active')) {
+                activeEl.classList.remove('active');
+                activeEl = null;
+                }
+            }, 250);
+            }
         });
 
         // If a new bestEntry is found and it's not the current active one, switch
