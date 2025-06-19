@@ -384,8 +384,10 @@ a {
   transition: all .3s ease;
   opacity: 0; }
 
-.grid-item-wrapper:hover:before {
-  opacity: 1; }
+.grid-item-wrapper:hover::before,
+.grid-item-wrapper.active::before {
+  opacity: 1;
+}
 
 .grid-item-wrapper.active .grid-info {
   top: 50%;
