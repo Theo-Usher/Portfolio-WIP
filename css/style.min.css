@@ -818,6 +818,18 @@ section.bg-grey .square-right:after {
 
 }
 
+/* Only allow interaction when active */
+.grid-item-wrapper .grid-info {
+  pointer-events: none;
+  z-index: 2;
+}
+
+.grid-item-wrapper.active .grid-info {
+  pointer-events: auto !important;
+  z-index: 3;
+}
+
+/* Prevent :hover from activating on mobile */
 @media (max-width: 767px) {
   .grid-item-wrapper:hover .grid-info {
     opacity: 0 !important;
@@ -829,14 +841,4 @@ section.bg-grey .square-right:after {
     opacity: 0 !important;
   }
 }
-
-.grid-item-wrapper.active .grid-info {
-  pointer-events: auto !important;
-  z-index: 3;
-}
-
-.grid-item-wrapper .grid-info {
-  pointer-events: none;
-}
-
 
