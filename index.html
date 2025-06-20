@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 4:36
+        <br> 4:45
         </p>
         <p2 align-items-center>
 
@@ -911,8 +911,13 @@
       function updateActiveItem() {
         const now = Date.now();
         const screenHeight = window.innerHeight;
-        const bandTop = screenHeight * 0.30;
-        const bandBottom = screenHeight * 0.60;
+
+        const activateTop = screenHeight * 0.35;
+        const activateBottom = screenHeight * 0.60;
+
+        const deactivateTop = screenHeight * 0.30;
+        const deactivateBottom = screenHeight * 0.65;
+
         const screenCenter = screenHeight / 2;
 
         const newlyQualified = [];
@@ -923,18 +928,21 @@
           if (!fullyVisible) continue;
 
           const midpoint = rect.top + rect.height / 2;
-          if (midpoint >= bandTop && midpoint <= bandBottom) {
+
+          // Check if qualifies for activation
+          if (midpoint >= activateTop && midpoint <= activateBottom) {
             newlyQualified.push({
               item,
-              distanceToCenter: Math.abs(midpoint - screenCenter)
+              distanceToCenter: Math.abs(midpoint - screenCenter),
+              midpoint
             });
           }
         }
 
-        // Sort matches by closeness to center
+        // Sort by closeness to center
         newlyQualified.sort((a, b) => a.distanceToCenter - b.distanceToCenter);
 
-        // Activate qualified items
+        // Activate all that qualify
         for (const { item } of newlyQualified) {
           if (!activeItems.has(item)) {
             item.classList.add('active');
@@ -945,10 +953,15 @@
           }
         }
 
-        // Deactivate items that expired and no longer qualify
+        // Deactivate anything that's been active long enough and is no longer in the deactivation band
         for (const [item, activatedAt] of activeItems.entries()) {
-          const stillQualifies = newlyQualified.some(q => q.item === item);
-          if (!stillQualifies && now - activatedAt >= 100) {
+          const rect = item.getBoundingClientRect();
+          const midpoint = rect.top + rect.height / 2;
+          const fullyVisible = rect.top >= 0 && rect.bottom <= screenHeight;
+
+          const inDeactivateBand = midpoint >= deactivateTop && midpoint <= deactivateBottom;
+
+          if ((!fullyVisible || !inDeactivateBand) && now - activatedAt >= 500) {
             item.classList.remove('active');
             activeItems.delete(item);
           }
