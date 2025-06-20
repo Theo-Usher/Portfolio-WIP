@@ -392,7 +392,7 @@ a {
 
   /* Prevent taps on gray background */
   .grid-item-wrapper .grid-info {
-    pointer-events: none;
+    pointer-events: none !important;
   }
 
 }
