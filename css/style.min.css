@@ -846,3 +846,13 @@ section.bg-grey .square-right:after {
   }
 }
 
+@media (max-width: 767px) {
+  .grid-item-wrapper {
+    pointer-events: none;
+  }
+
+  .grid-info,
+  .grid-info a {
+    pointer-events: auto;
+  }
+}
