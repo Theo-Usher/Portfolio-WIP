@@ -851,8 +851,8 @@ section.bg-grey .square-right:after {
     pointer-events: none;
   }
 
-  .grid-info,
-  .grid-info a {
+  .grid-item-wrapper .grid-info,
+  .grid-item-wrapper .grid-info * {
     pointer-events: auto;
   }
 }

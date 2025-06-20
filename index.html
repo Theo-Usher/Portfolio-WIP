@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 1:12
+        <br> 1:22
         </p>
         <p2 align-items-center>
 
@@ -930,11 +930,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      if (bestItem && bestItem !== lastActive) {
-        items.forEach(i => i.classList.remove('active'));
-        bestItem.classList.add('active');
-        lastActive = bestItem;
-      }
+if (bestItem) {
+  // Only reapply if needed
+  if (!bestItem.classList.contains('active')) {
+    items.forEach(i => i.classList.remove('active'));
+    bestItem.classList.add('active');
+    lastActive = bestItem;
+  }
+}
     }
 
     ['scroll', 'resize', 'load'].forEach(evt =>
