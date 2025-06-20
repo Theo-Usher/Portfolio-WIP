@@ -818,32 +818,4 @@ section.bg-grey .square-right:after {
 
 }
 
-/* Only allow interaction when active */
-.grid-item-wrapper .grid-info {
-  pointer-events: none;
-  z-index: 2;
-}
-
-.grid-item-wrapper.active .grid-info {
-  pointer-events: auto !important;
-  z-index: 3;
-}
-
-@media (max-width: 767px) {
-  .grid-item-wrapper .grid-info {
-    pointer-events: none;
-  }
-
-  .grid-item-wrapper.active .grid-info {
-    pointer-events: auto !important;
-    z-index: 5;
-  }
-
-  .grid-item-wrapper:hover .grid-info,
-  .grid-item-wrapper:hover::before {
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-}
-
 
