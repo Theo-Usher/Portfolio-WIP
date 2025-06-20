@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 11:05
+        <br> 11:12
         </p>
         <p2 align-items-center>
 
@@ -922,6 +922,14 @@ document.addEventListener('DOMContentLoaded', function () {
       let maxVisible = 0;
 
       entries.forEach(entry => {
+        const target = entry.target;
+
+        // Only update .active if the change is not caused by an interaction inside .grid-info
+        const isInDropdown = document.activeElement && document.activeElement.closest('.grid-info');
+        if (isInDropdown && activeEl && entry.target !== activeEl) {
+          return; // Ignore this update — a button was just tapped
+        }
+
         const height = entry.intersectionRect.height;
         const ratio = entry.intersectionRatio;
 
@@ -942,15 +950,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     items.forEach(item => observer.observe(item));
-
-    // Prevent tap from interfering with future activation
-    items.forEach(item => {
-      item.addEventListener('touchstart', (e) => {
-        if (!item.classList.contains('active')) {
-          e.preventDefault(); // Prevent Safari tap-hover glitch
-        }
-      }, { passive: false });
-    });
   }
 });
 </script>
