@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 4:27
+        <br> 4:33
         </p>
         <p2 align-items-center>
 
@@ -906,35 +906,52 @@
   document.addEventListener('DOMContentLoaded', function () {
     if (window.innerWidth < 768) {
       const items = document.querySelectorAll('.grid-item-wrapper');
+      const activeItems = new Map(); // Map<HTMLElement, activationTimestamp>
 
       function updateActiveItem() {
+        const now = Date.now();
         const screenHeight = window.innerHeight;
-        const bandTop = screenHeight * 0.30;   // 40% from top
-        const bandBottom = screenHeight * 0.60; // 55% from top
+        const bandTop = screenHeight * 0.30;
+        const bandBottom = screenHeight * 0.60;
+        const screenCenter = screenHeight / 2;
 
-        let activeItem = null;
+        const newlyQualified = [];
 
         for (const item of items) {
           const rect = item.getBoundingClientRect();
-
-          // Check if item is 100% fully within viewport
           const fullyVisible = rect.top >= 0 && rect.bottom <= screenHeight;
           if (!fullyVisible) continue;
 
-          // Check if item's midpoint is in the 40-55% vertical zone
           const midpoint = rect.top + rect.height / 2;
           if (midpoint >= bandTop && midpoint <= bandBottom) {
-            activeItem = item;
-            break; // only take the first one
+            newlyQualified.push({
+              item,
+              distanceToCenter: Math.abs(midpoint - screenCenter)
+            });
           }
         }
 
-        // Clear all active states
-        items.forEach(i => i.classList.remove('active'));
+        // Sort matches by closeness to center
+        newlyQualified.sort((a, b) => a.distanceToCenter - b.distanceToCenter);
 
-        // Set new active item if one qualified
-        if (activeItem) {
-          activeItem.classList.add('active');
+        // Activate qualified items
+        for (const { item } of newlyQualified) {
+          if (!activeItems.has(item)) {
+            item.classList.add('active');
+            activeItems.set(item, now);
+          } else {
+            // Refresh timer if still active
+            activeItems.set(item, now);
+          }
+        }
+
+        // Deactivate items that expired and no longer qualify
+        for (const [item, activatedAt] of activeItems.entries()) {
+          const stillQualifies = newlyQualified.some(q => q.item === item);
+          if (!stillQualifies && now - activatedAt >= 500) {
+            item.classList.remove('active');
+            activeItems.delete(item);
+          }
         }
       }
 
