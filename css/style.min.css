@@ -853,11 +853,19 @@ section.bg-grey .square-right:after {
     pointer-events: none;
   }
 
-  .grid-info,
-  .grid-info * {
+  /* Disable gray box interaction */
+  .grid-item-wrapper,
+  .grid-info {
+    pointer-events: none;
+  }
+
+  /* Enable only button/link clicks */
+  .grid-info a,
+  .grid-info button {
     pointer-events: auto;
   }
 }
+
 @media (max-width: 767px) {
   .grid-item:hover .grid-info {
     top: initial !important;
