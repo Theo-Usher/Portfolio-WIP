@@ -387,7 +387,7 @@ a {
   }
 
   .grid-item {
-    pointer-events: none;
+    pointer-events: none !important;
   }
 
   /* Prevent taps on gray background */
@@ -422,7 +422,6 @@ a {
 .grid-item-wrapper.active .grid-info {
   top: 50%;
   opacity: 1;
-  pointer-events: auto !important;
 
 }
 
@@ -873,6 +872,17 @@ section.bg-grey .square-right:after {
     pointer-events: none !important;
   }
 }
-.dropdown-text {
-  pointer-events: auto;
+
+
+@media (max-width: 767px) {
+  /* Disable ALL pointer events in grid-info */
+  .grid-item-wrapper .grid-info,
+  .grid-item-wrapper .grid-info * {
+    pointer-events: none !important;
+  }
+
+  /* Re-enable ONLY buttons in grid-title when active */
+  .grid-item-wrapper.active .grid-info .grid-title a.btn {
+    pointer-events: auto !important;
+  }
 }
