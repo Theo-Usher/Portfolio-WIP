@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 4:33
+        <br> 4:36
         </p>
         <p2 align-items-center>
 
@@ -948,7 +948,7 @@
         // Deactivate items that expired and no longer qualify
         for (const [item, activatedAt] of activeItems.entries()) {
           const stillQualifies = newlyQualified.some(q => q.item === item);
-          if (!stillQualifies && now - activatedAt >= 500) {
+          if (!stillQualifies && now - activatedAt >= 100) {
             item.classList.remove('active');
             activeItems.delete(item);
           }
