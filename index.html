@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 12:29
+        <br> 12:35
         </p>
         <p2 align-items-center>
 
@@ -900,16 +900,7 @@
     }
   });
 </script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const videos = document.querySelectorAll('video[autoplay]');
-    videos.forEach(video => {
-      video.play().catch(() => {
-        // Optional: show fallback image or controls
-      });
-    });
-  });
-</script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -918,11 +909,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let activeEl = null;
     let ignoreNextObserverUpdate = false;
 
-    // Suppress observer update if tap was on .grid-info but NOT on a link
     ['touchstart', 'mousedown'].forEach(eventType => {
       document.addEventListener(eventType, function (e) {
-        const infoBox = e.target.closest('.grid-info');
-        if (infoBox && !e.target.closest('a')) {
+        if (e.target.closest('.grid-info')) {
           ignoreNextObserverUpdate = true;
         }
       }, { passive: true });
