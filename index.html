@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 9:34
+        <br> 9:40
         </p>
         <p2 align-items-center>
 
@@ -917,11 +917,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const items = document.querySelectorAll('.grid-item-wrapper');
     let activeEl = null;
 
-    // Prevent tap from interfering with future scroll logic
+    // Prevent tapping from blocking future scroll events
     items.forEach(item => {
-      item.addEventListener('touchstart', (e) => {
-        e.stopPropagation(); // Prevent touch from killing intersection logic
-      });
+      item.addEventListener('touchstart', e => {
+        if (!item.classList.contains('active')) {
+          e.stopPropagation();
+          e.preventDefault(); // prevents weird hover sim
+        }
+      }, { passive: false });
     });
 
     const observer = new IntersectionObserver((entries) => {
@@ -929,19 +932,17 @@ document.addEventListener('DOMContentLoaded', function () {
       let maxVisible = 0;
 
       entries.forEach(entry => {
-        const visibleHeight = entry.intersectionRect.height;
+        const height = entry.intersectionRect.height;
         const ratio = entry.intersectionRatio;
 
-        if (entry.isIntersecting && ratio > 0.4 && visibleHeight > maxVisible) {
-          maxVisible = visibleHeight;
+        if (entry.isIntersecting && ratio > 0.4 && height > maxVisible) {
           bestEntry = entry;
+          maxVisible = height;
         }
       });
 
       if (bestEntry && bestEntry.target !== activeEl) {
-        if (activeEl) {
-          activeEl.classList.remove('active');
-        }
+        if (activeEl) activeEl.classList.remove('active');
         bestEntry.target.classList.add('active');
         activeEl = bestEntry.target;
       }
