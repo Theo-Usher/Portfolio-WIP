@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 10:04
+        <br> 10:17
         </p>
         <p2 align-items-center>
 
@@ -881,7 +881,7 @@
     });
   });
 </script>
-<!--<script>
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.querySelectorAll('.filter-button-group .btn');
 
@@ -917,31 +917,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const items = document.querySelectorAll('.grid-item-wrapper');
     let activeEl = null;
 
-    // Prevent tap from interfering with future scroll logic
-    items.forEach(item => {
-      item.addEventListener('touchstart', (e) => {
-        e.stopPropagation(); // Prevent touch from killing intersection logic
-      });
-    });
-
     const observer = new IntersectionObserver((entries) => {
       let bestEntry = null;
       let maxVisible = 0;
 
       entries.forEach(entry => {
-        const visibleHeight = entry.intersectionRect.height;
+        const height = entry.intersectionRect.height;
         const ratio = entry.intersectionRatio;
 
-        if (entry.isIntersecting && ratio > 0.4 && visibleHeight > maxVisible) {
-          maxVisible = visibleHeight;
+        if (entry.isIntersecting && ratio > 0.4 && height > maxVisible) {
+          maxVisible = height;
           bestEntry = entry;
         }
       });
 
       if (bestEntry && bestEntry.target !== activeEl) {
-        if (activeEl) {
-          activeEl.classList.remove('active');
-        }
+        if (activeEl) activeEl.classList.remove('active');
         bestEntry.target.classList.add('active');
         activeEl = bestEntry.target;
       }
@@ -951,9 +942,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     items.forEach(item => observer.observe(item));
+
+    // Prevent accidental "tap hover" from blocking dropdown
+    items.forEach(item => {
+      item.addEventListener('touchstart', (e) => {
+        // Don't block if already active
+        if (!item.classList.contains('active')) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    });
   }
 });
-</script> -->
+</script>
 
 </body>
 </html>
