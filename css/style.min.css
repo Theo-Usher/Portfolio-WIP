@@ -369,6 +369,12 @@ a {
   border-radius: 5px;
   overflow: hidden; }
 
+@media (max-width: 767px) {
+  .grid-item:hover .grid-info {
+    top: initial;
+    opacity: 0;
+  }
+}
 
 .grid-item-wrapper:before {
   content: '';
@@ -847,21 +853,8 @@ section.bg-grey .square-right:after {
     pointer-events: none;
   }
 
-  /* Re-enable only buttons and links inside the dropdown */
-  .grid-info a,
-  .grid-info button {
+  .grid-info,
+  .grid-info * {
     pointer-events: auto;
-  }
-}
-
-@media (max-width: 767px) {
-  .grid-item:hover .grid-info,
-  .grid-item:hover::before {
-    opacity: 0 !important;
-    top: initial !important;
-  }
-
-  .grid-item:hover::before {
-    opacity: 0 !important;
   }
 }
