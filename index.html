@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 4:14
+        <br> 4:23
         </p>
         <p2 align-items-center>
 
@@ -908,24 +908,33 @@
       const items = document.querySelectorAll('.grid-item-wrapper');
 
       function updateActiveItem() {
-        let bestItem = null;
-
         const screenHeight = window.innerHeight;
-        const bandTop = screenHeight * 0.35;  // 35% from top
-        const bandBottom = screenHeight * 0.50; // 50% from top
+        const bandTop = screenHeight * 0.40;   // 40% from top
+        const bandBottom = screenHeight * 0.55; // 55% from top
 
-        items.forEach(item => {
+        let activeItem = null;
+
+        for (const item of items) {
           const rect = item.getBoundingClientRect();
-          const itemMid = rect.top + rect.height / 2;
 
-          if (itemMid >= bandTop && itemMid <= bandBottom) {
-            bestItem = item;
+          // Check if item is 100% fully within viewport
+          const fullyVisible = rect.top >= 0 && rect.bottom <= screenHeight;
+          if (!fullyVisible) continue;
+
+          // Check if item's midpoint is in the 40-55% vertical zone
+          const midpoint = rect.top + rect.height / 2;
+          if (midpoint >= bandTop && midpoint <= bandBottom) {
+            activeItem = item;
+            break; // only take the first one
           }
-        });
+        }
 
-        if (bestItem) {
-          items.forEach(i => i.classList.remove('active'));
-          bestItem.classList.add('active');
+        // Clear all active states
+        items.forEach(i => i.classList.remove('active'));
+
+        // Set new active item if one qualified
+        if (activeItem) {
+          activeItem.classList.add('active');
         }
       }
 
