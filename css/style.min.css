@@ -368,9 +368,11 @@ a {
   margin-bottom: 20px;
   border-radius: 5px;
   overflow: hidden; }
-  .grid-item:hover .grid-info {
-    top: 50%;
-    opacity: 1; }
+
+.grid-item:hover .grid-info {
+  top: 50%;
+  opacity: 1;
+}
 
 .grid-item-wrapper:before {
   content: '';

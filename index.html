@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 11:12
+        <br> 12:29
         </p>
         <p2 align-items-center>
 
@@ -916,20 +916,28 @@ document.addEventListener('DOMContentLoaded', function () {
   if (window.innerWidth < 768) {
     const items = document.querySelectorAll('.grid-item-wrapper');
     let activeEl = null;
+    let ignoreNextObserverUpdate = false;
+
+    // Suppress observer update if tap was on .grid-info but NOT on a link
+    ['touchstart', 'mousedown'].forEach(eventType => {
+      document.addEventListener(eventType, function (e) {
+        const infoBox = e.target.closest('.grid-info');
+        if (infoBox && !e.target.closest('a')) {
+          ignoreNextObserverUpdate = true;
+        }
+      }, { passive: true });
+    });
 
     const observer = new IntersectionObserver((entries) => {
+      if (ignoreNextObserverUpdate) {
+        ignoreNextObserverUpdate = false;
+        return;
+      }
+
       let bestEntry = null;
       let maxVisible = 0;
 
       entries.forEach(entry => {
-        const target = entry.target;
-
-        // Only update .active if the change is not caused by an interaction inside .grid-info
-        const isInDropdown = document.activeElement && document.activeElement.closest('.grid-info');
-        if (isInDropdown && activeEl && entry.target !== activeEl) {
-          return; // Ignore this update — a button was just tapped
-        }
-
         const height = entry.intersectionRect.height;
         const ratio = entry.intersectionRatio;
 
