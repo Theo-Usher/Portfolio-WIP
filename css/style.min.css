@@ -872,9 +872,6 @@ section.bg-grey .square-right:after {
     pointer-events: none !important;
   }
 }
-.dropdown-text {
-  pointer-events: auto;
-}
 
 @media (max-width: 767px) {
   .grid-item-wrapper.active .grid-info a.dropdown-text {
@@ -891,4 +888,9 @@ section.bg-grey .square-right:after {
   .grid-item-wrapper.active .grid-info .grid-title * {
     pointer-events: auto;
   }
+}
+
+.grid-item-wrapper.active .grid-info h4,
+.grid-item-wrapper.active .grid-info > a:not(.btn) {
+  pointer-events: none;
 }
