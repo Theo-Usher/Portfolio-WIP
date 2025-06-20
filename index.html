@@ -917,6 +917,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const items = document.querySelectorAll('.grid-item-wrapper');
     let activeEl = null;
 
+    // Prevent tap from interfering with future scroll logic
+    items.forEach(item => {
+      item.addEventListener('touchstart', (e) => {
+        e.stopPropagation(); // Prevent touch from killing intersection logic
+      });
+    });
+
     const observer = new IntersectionObserver((entries) => {
       let bestEntry = null;
       let maxVisible = 0;
@@ -925,7 +932,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const visibleHeight = entry.intersectionRect.height;
         const ratio = entry.intersectionRatio;
 
-        // Pick best candidate
         if (entry.isIntersecting && ratio > 0.4 && visibleHeight > maxVisible) {
           maxVisible = visibleHeight;
           bestEntry = entry;
