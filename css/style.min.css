@@ -395,11 +395,6 @@ a {
     pointer-events: none;
   }
 
-  /* Allow buttons to work */
-  .grid-item-wrapper.active .grid-info a,
-  .grid-item-wrapper.active .grid-info button {
-    pointer-events: auto;
-  }
 }
 
 .grid-item-wrapper:before {
@@ -859,10 +854,6 @@ section.bg-grey .square-right:after {
     transition: all 0.3s ease;
   }
 
-  .grid-item-wrapper.active .grid-info {
-    pointer-events: auto !important;
-    z-index: 3;
-  }
 
   /* Prevent tap-to-hover on mobile */
   .grid-item-wrapper:hover .grid-info,
@@ -873,24 +864,16 @@ section.bg-grey .square-right:after {
   }
 }
 
-@media (max-width: 767px) {
-  .grid-item-wrapper.active .grid-info a.dropdown-text {
-    pointer-events: none;
-  }
-}
 
 @media (max-width: 767px) {
-  .grid-item-wrapper.active .grid-info {
-    pointer-events: none;
+  /* Disable ALL pointer events in grid-info */
+  .grid-item-wrapper .grid-info,
+  .grid-item-wrapper .grid-info * {
+    pointer-events: none !important;
   }
 
-  .grid-item-wrapper.active .grid-info .grid-title,
-  .grid-item-wrapper.active .grid-info .grid-title * {
-    pointer-events: auto;
+  /* Re-enable ONLY buttons in grid-title when active */
+  .grid-item-wrapper.active .grid-info .grid-title a.btn {
+    pointer-events: auto !important;
   }
-}
-
-.grid-item-wrapper.active .grid-info h4,
-.grid-item-wrapper.active .grid-info > a:not(.btn) {
-  pointer-events: none;
 }
