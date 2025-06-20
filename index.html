@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 12:45
+        <br> 12:49
         </p>
         <p2 align-items-center>
 
@@ -906,7 +906,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (window.innerWidth < 768) {
     const items = document.querySelectorAll('.grid-item-wrapper');
-    let activeEl = null;
 
     const observer = new IntersectionObserver((entries) => {
       let bestEntry = null;
@@ -923,14 +922,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       if (bestEntry) {
-  if (activeEl && activeEl !== bestEntry.target) {
-    activeEl.classList.remove('active');
-  }
-  if (!bestEntry.target.classList.contains('active')) {
-    bestEntry.target.classList.add('active');
-    activeEl = bestEntry.target;
-  }
-}
+        const currentlyActive = document.querySelector('.grid-item-wrapper.active');
+        if (currentlyActive && currentlyActive !== bestEntry.target) {
+          currentlyActive.classList.remove('active');
+        }
+        bestEntry.target.classList.add('active');
+      }
     }, {
       threshold: Array.from({ length: 101 }, (_, i) => i / 100),
       rootMargin: '-30% 0px -30% 0px'
