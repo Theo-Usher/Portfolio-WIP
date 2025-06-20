@@ -369,9 +369,11 @@ a {
   border-radius: 5px;
   overflow: hidden; }
 
-.grid-item:hover .grid-info {
-  top: 50%;
-  opacity: 1;
+@media (max-width: 767px) {
+  .grid-item:hover .grid-info {
+    top: initial;
+    opacity: 0;
+  }
 }
 
 .grid-item-wrapper:before {
