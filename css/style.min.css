@@ -818,13 +818,10 @@ section.bg-grey .square-right:after {
 
 }
 @media (max-width: 767px) {
-  /* Prevent tap-to-hover on mobile */
-  .grid-item-wrapper:hover .grid-info,
-  .grid-item-wrapper:hover::before {
-    opacity: 0 !important;
-    top: 0 !important;
-    pointer-events: none !important;
+  .grid-item-wrapper:not(.active) .grid-info {
+    pointer-events: none;
   }
+
 
   /* Ensure .grid-info is only interactive when .active */
   .grid-item-wrapper .grid-info {
@@ -834,11 +831,16 @@ section.bg-grey .square-right:after {
   }
 
   .grid-item-wrapper.active .grid-info {
-    pointer-events: auto;
+    pointer-events: auto !important;
     z-index: 3;
   }
-  .grid-item-wrapper:not(.active) .grid-info {
-    pointer-events: none;
+
+  /* Prevent tap-to-hover on mobile */
+  .grid-item-wrapper:hover .grid-info,
+  .grid-item-wrapper:hover::before {
+    opacity: 0 !important;
+    top: 0 !important;
+    pointer-events: none !important;
   }
 }
 
