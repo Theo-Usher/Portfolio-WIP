@@ -387,7 +387,7 @@ a {
   }
 
   .grid-item {
-    pointer-events: none;
+    pointer-events: none !important;
   }
 
   /* Prevent taps on gray background */
