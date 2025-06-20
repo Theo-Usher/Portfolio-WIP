@@ -817,5 +817,29 @@ section.bg-grey .square-right:after {
 
 
 }
+@media (max-width: 767px) {
+  /* Base state: dropdown is hidden and unclickable */
+  .grid-item-wrapper .grid-info {
+    pointer-events: none;
+    opacity: 0;
+    top: 0;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
 
+  /* When active, overlay is shown and interactive */
+  .grid-item-wrapper.active .grid-info {
+    pointer-events: auto;
+    opacity: 1;
+    top: 50%;
+    z-index: 3;
+  }
+
+  /* Disable simulated hover effects from mobile tap */
+  .grid-item-wrapper:hover .grid-info,
+  .grid-item-wrapper:hover::before {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
 
