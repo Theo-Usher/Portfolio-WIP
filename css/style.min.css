@@ -873,3 +873,12 @@ section.bg-grey .square-right:after {
     pointer-events: none !important;
   }
 }
+.dropdown-text {
+  pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+  .grid-item-wrapper.active .grid-info a.dropdown-text {
+    pointer-events: none;
+  }
+}
