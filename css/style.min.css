@@ -849,12 +849,22 @@ section.bg-grey .square-right:after {
 }
 
 @media (max-width: 767px) {
-  .grid-item-wrapper {
+  .grid-item {
     pointer-events: none;
   }
 
-  .grid-item-wrapper .grid-info,
-  .grid-item-wrapper .grid-info * {
+  .grid-info,
+  .grid-info * {
     pointer-events: auto;
+  }
+}
+@media (max-width: 767px) {
+  .grid-item:hover .grid-info {
+    top: initial !important;
+    opacity: 0 !important;
+  }
+
+  .grid-item:hover::before {
+    opacity: 0 !important;
   }
 }
