@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 2:20
+        <br> 2:27
         </p>
         <p2 align-items-center>
 
@@ -903,52 +903,48 @@
 
 
 <script>
-if (window.innerWidth < 768) {
-  const items = document.querySelectorAll('.grid-item-wrapper');
-  let lastActive = null;
-  let suppressActivationUntil = 0;
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.innerWidth < 768) {
+    const items = document.querySelectorAll('.grid-item-wrapper');
+    let lastActive = null;
 
-  function getVisibleHeight(el) {
-    const rect = el.getBoundingClientRect();
-    return Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
-  }
-
-  function updateActiveItem() {
-    const now = Date.now();
-    if (now < suppressActivationUntil) return;
-
-    let bestItem = null;
-    let bestVisible = 0;
-
-    items.forEach(item => {
-      const rect = item.getBoundingClientRect();
-      const visible = getVisibleHeight(item);
-      const ratio = visible / rect.height;
-
-      if (ratio > 0.4 && visible > 150 && visible > bestVisible) {
-        bestItem = item;
-        bestVisible = visible;
-      }
-    });
-
-    if (bestItem && !bestItem.classList.contains('active')) {
-      items.forEach(i => i.classList.remove('active'));
-      bestItem.classList.add('active');
-      lastActive = bestItem;
+    function getVisibleHeight(el) {
+      const rect = el.getBoundingClientRect();
+      return Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
     }
+
+    function updateActiveItem() {
+      let bestItem = null;
+      let bestVisible = 0;
+
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const total = rect.height;
+        const visible = getVisibleHeight(item);
+        const ratio = visible / total;
+
+        // Require at least 40% visibility AND at least 150px
+        if (ratio > 0.4 && visible > 150 && visible > bestVisible) {
+          bestItem = item;
+          bestVisible = visible;
+        }
+      });
+
+if (bestItem) {
+  // Only reapply if needed
+  if (!bestItem.classList.contains('active')) {
+    items.forEach(i => i.classList.remove('active'));
+    bestItem.classList.add('active');
+    lastActive = bestItem;
   }
-
-  document.addEventListener('touchstart', (e) => {
-    const isInsideDropdown = e.target.closest('.grid-info');
-    if (!isInsideDropdown) {
-      suppressActivationUntil = Date.now() + 400;
-    }
-  }, { passive: true });
-
-  ['scroll', 'resize', 'load'].forEach(evt =>
-    window.addEventListener(evt, updateActiveItem, { passive: true })
-  );
 }
+    }
+
+    ['scroll', 'resize', 'load'].forEach(evt =>
+      window.addEventListener(evt, updateActiveItem, { passive: true })
+    );
+  }
+});
 </script>
 
 </body>
