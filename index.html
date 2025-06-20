@@ -906,7 +906,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (window.innerWidth < 768) {
     const items = document.querySelectorAll('.grid-item-wrapper');
-    let ticking = false;
 
     function updateActiveItem() {
       let bestItem = null;
@@ -922,28 +921,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      if (bestItem) {
-        const current = document.querySelector('.grid-item-wrapper.active');
-        if (current && current !== bestItem) {
-          current.classList.remove('active');
-        }
-        if (!bestItem.classList.contains('active')) {
-          bestItem.classList.add('active');
-        }
-      }
-      ticking = false;
+      // Reset all, then activate best
+      items.forEach(item => item.classList.remove('active'));
+      if (bestItem) bestItem.classList.add('active');
     }
 
-    function onScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(updateActiveItem);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll);
-    window.addEventListener('resize', onScroll);
-    window.addEventListener('load', updateActiveItem);
+    ['scroll', 'resize', 'load'].forEach(event =>
+      window.addEventListener(event, updateActiveItem, { passive: true })
+    );
   }
 });
 </script>
