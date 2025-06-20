@@ -422,7 +422,6 @@ a {
 .grid-item-wrapper.active .grid-info {
   top: 50%;
   opacity: 1;
-  pointer-events: auto !important;
 
 }
 
@@ -880,5 +879,16 @@ section.bg-grey .square-right:after {
 @media (max-width: 767px) {
   .grid-item-wrapper.active .grid-info a.dropdown-text {
     pointer-events: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-item-wrapper.active .grid-info {
+    pointer-events: none;
+  }
+
+  .grid-item-wrapper.active .grid-info .grid-title,
+  .grid-item-wrapper.active .grid-info .grid-title * {
+    pointer-events: auto;
   }
 }
