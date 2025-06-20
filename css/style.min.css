@@ -370,9 +370,25 @@ a {
   overflow: hidden; }
 
 @media (max-width: 767px) {
-  .grid-item:hover .grid-info {
-    top: initial;
-    opacity: 0;
+  .grid-item:hover .grid-info,
+  .grid-item-wrapper:hover::before {
+    top: initial !important;
+    opacity: 0 !important;
+  }
+
+  .grid-item {
+    pointer-events: none;
+  }
+
+  /* Prevent taps on gray background */
+  .grid-item-wrapper .grid-info {
+    pointer-events: none;
+  }
+
+  /* Allow buttons to work */
+  .grid-item-wrapper.active .grid-info a,
+  .grid-item-wrapper.active .grid-info button {
+    pointer-events: auto;
   }
 }
 
@@ -845,16 +861,5 @@ section.bg-grey .square-right:after {
     opacity: 0 !important;
     top: 0 !important;
     pointer-events: none !important;
-  }
-}
-
-@media (max-width: 767px) {
-  .grid-item {
-    pointer-events: none;
-  }
-
-  .grid-info,
-  .grid-info * {
-    pointer-events: auto;
   }
 }
