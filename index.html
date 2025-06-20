@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 12:49
+        <br> 12:53
         </p>
         <p2 align-items-center>
 
@@ -906,34 +906,44 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (window.innerWidth < 768) {
     const items = document.querySelectorAll('.grid-item-wrapper');
+    let ticking = false;
 
-    const observer = new IntersectionObserver((entries) => {
-      let bestEntry = null;
+    function updateActiveItem() {
+      let bestItem = null;
       let maxVisible = 0;
 
-      entries.forEach(entry => {
-        const height = entry.intersectionRect.height;
-        const ratio = entry.intersectionRatio;
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const visibleHeight = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
 
-        if (entry.isIntersecting && ratio > 0.4 && height > maxVisible) {
-          bestEntry = entry;
-          maxVisible = height;
+        if (visibleHeight > maxVisible && visibleHeight > rect.height * 0.4) {
+          bestItem = item;
+          maxVisible = visibleHeight;
         }
       });
 
-      if (bestEntry) {
-        const currentlyActive = document.querySelector('.grid-item-wrapper.active');
-        if (currentlyActive && currentlyActive !== bestEntry.target) {
-          currentlyActive.classList.remove('active');
+      if (bestItem) {
+        const current = document.querySelector('.grid-item-wrapper.active');
+        if (current && current !== bestItem) {
+          current.classList.remove('active');
         }
-        bestEntry.target.classList.add('active');
+        if (!bestItem.classList.contains('active')) {
+          bestItem.classList.add('active');
+        }
       }
-    }, {
-      threshold: Array.from({ length: 101 }, (_, i) => i / 100),
-      rootMargin: '-30% 0px -30% 0px'
-    });
+      ticking = false;
+    }
 
-    items.forEach(item => observer.observe(item));
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveItem);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', updateActiveItem);
   }
 });
 </script>
