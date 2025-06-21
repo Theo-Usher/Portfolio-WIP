@@ -842,24 +842,6 @@ section.bg-grey .square-right:after {
 }
 
 
-@media (max-width: 767px) {
-  .grid-item-wrapper .grid-info,
-  .grid-item-wrapper .grid-info * {
-    pointer-events: none !important;
-  }
-
-  /* Re-enable ONLY buttons in grid-title when active */
-  .grid-item-wrapper.active .grid-info .grid-title a.btn {
-    pointer-events: auto !important;
-  }
-}
-
-@media (max-width: 767px) {
-  .grid-info a:not(.btn) {
-    pointer-events: none !important;
-    user-select: none !important;
-  }
-}
 
 @media (max-width: 767px) {
   /* 1. Disable all pointer events globally in portfolio items */
