@@ -862,16 +862,17 @@ section.bg-grey .square-right:after {
 }
 
 @media (max-width: 767px) {
-  /* Allow all pointer events inside .grid-info by default */
-  .grid-item-wrapper .grid-info,
-  .grid-item-wrapper .grid-info * {
-    pointer-events: auto !important;
+  /* 1. Disable all pointer events globally in portfolio items */
+  .grid-item-wrapper,
+  .grid-item-wrapper *,
+  .grid-item,
+  .grid-item * {
+    pointer-events: none !important;
   }
 
-  /* Then disable them ONLY for non-button links */
-  .grid-info a:not(.btn) {
-    pointer-events: none !important;
-    user-select: none !important;
+  /* 2. Re-enable ONLY the buttons in the active item */
+  .grid-item-wrapper.active .grid-info .grid-title .btn {
+    pointer-events: auto !important;
   }
 }
 
