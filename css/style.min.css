@@ -862,10 +862,11 @@ section.bg-grey .square-right:after {
 }
 
 @media (max-width: 767px) {
-  .grid-item:hover .grid-info,
-  .grid-item:hover::before {
-    opacity: 0 !important;
-    top: initial !important;
-    transition: none !important;
-  }
+ .grid-item:hover .grid-info,
+.grid-item:hover::before,
+.grid-item-wrapper:hover::before {
+  opacity: 0 !important;
+  top: initial !important;
+  transition: none !important;
+}
 }
