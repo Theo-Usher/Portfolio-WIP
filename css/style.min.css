@@ -862,25 +862,29 @@ section.bg-grey .square-right:after {
 }
 
 @media (max-width: 767px) {
-  /* FULLY disable sticky hover visuals on mobile */
+  /* Disable pointer events on non-button elements in .grid-info */
+  .grid-item-wrapper .grid-info a:not(.btn),
+  .grid-item-wrapper .grid-info h4,
+  .grid-item-wrapper .grid-info p {
+    pointer-events: none !important;
+    user-select: none !important;
+  }
+
+  /* Allow button clicks */
+  .grid-item-wrapper.active .grid-info .grid-title a.btn {
+    pointer-events: auto !important;
+  }
+
+  /* Prevent hover sticking on mobile taps */
   .grid-item-wrapper:hover .grid-info,
   .grid-item-wrapper:hover::before {
+    pointer-events: none !important;
     opacity: 0 !important;
     top: initial !important;
     transition: none !important;
-    pointer-events: none !important;
   }
 
   .grid-item-wrapper:hover {
-    pointer-events: none !important;
-  }
-
-  /* Also kill hover on grid-item (redundant but safe) */
-  .grid-item:hover .grid-info,
-  .grid-item:hover::before {
-    opacity: 0 !important;
-    top: initial !important;
-    transition: none !important;
     pointer-events: none !important;
   }
 }
