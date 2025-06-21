@@ -871,6 +871,10 @@ section.bg-grey .square-right:after {
     pointer-events: none !important;
   }
 
+  .grid-item-wrapper:hover {
+    pointer-events: none !important;
+  }
+
   /* Also kill hover on grid-item (redundant but safe) */
   .grid-item:hover .grid-info,
   .grid-item:hover::before {
@@ -880,21 +884,4 @@ section.bg-grey .square-right:after {
     pointer-events: none !important;
   }
 }
-.grid-item-wrapper:hover {
-  outline: 2px dashed red;
-}
 
-.h4-style {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0 0 0.5rem 0;
-}
-
-.link-style {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
