@@ -51,7 +51,7 @@
                     <a class="nav-link" href="#title">Home</a>
                 </li> &nbsp; -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#portfolio-lower">12:14 Portfolio</a>
+                    <a class="nav-link" href="#portfolio-lower">12:20 Portfolio</a>
                 </li> &nbsp;
                 <li class="nav-item">
                     <a class="nav-link" href="#skillsets-lower">Skill Sets</a>
@@ -970,6 +970,14 @@
           }
         }
       }
+      document.querySelectorAll('.grid-info').forEach(infoBox => {
+  infoBox.addEventListener('click', () => {
+    setTimeout(updateActiveItem, 100);
+  });
+  infoBox.addEventListener('touchstart', () => {
+    setTimeout(updateActiveItem, 100);
+  });
+});
 
       ['scroll', 'resize', 'load'].forEach(evt =>
         window.addEventListener(evt, updateActiveItem, { passive: true })
