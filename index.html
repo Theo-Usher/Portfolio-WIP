@@ -973,6 +973,16 @@
     }
   });
 </script>
+<script>
+  document.querySelectorAll('.grid-info a').forEach(link => {
+    link.addEventListener('click', () => {
+      // Wait 50ms to allow any layout updates from the click to complete
+      setTimeout(() => {
+        updateActiveItem();
+      }, 50);
+    });
+  });
+</script>
 
 
 </body>
