@@ -862,15 +862,16 @@ section.bg-grey .square-right:after {
 }
 
 @media (max-width: 767px) {
-  /* 1. Disable pointer events for all of .grid-info */
-  .grid-item-wrapper .grid-info {
-    pointer-events: none !important;
-  }
-
-  /* 2. Re-enable ONLY .btn elements inside .grid-title when active */
-  .grid-item-wrapper.active .grid-info .grid-title .btn {
+  /* Allow all pointer events inside .grid-info by default */
+  .grid-item-wrapper .grid-info,
+  .grid-item-wrapper .grid-info * {
     pointer-events: auto !important;
   }
 
+  /* Then disable them ONLY for non-button links */
+  .grid-info a:not(.btn) {
+    pointer-events: none !important;
+    user-select: none !important;
+  }
 }
 
