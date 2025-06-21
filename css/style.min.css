@@ -872,12 +872,5 @@ section.bg-grey .square-right:after {
     pointer-events: auto !important;
   }
 
-  /* 3. Remove hover-based visuals */
-  .grid-item-wrapper:hover .grid-info,
-  .grid-item-wrapper:hover::before {
-    opacity: 0 !important;
-    top: initial !important;
-    transition: none !important;
-  }
 }
 
