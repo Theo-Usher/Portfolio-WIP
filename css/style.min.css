@@ -854,3 +854,9 @@ section.bg-grey .square-right:after {
     pointer-events: auto !important;
   }
 }
+
+@media (max-width: 767px) {
+  .grid-info a:not(.btn) {
+    pointer-events: none !important;
+  }
+}
