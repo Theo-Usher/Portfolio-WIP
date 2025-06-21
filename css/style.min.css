@@ -843,7 +843,6 @@ section.bg-grey .square-right:after {
 
 
 @media (max-width: 767px) {
-  /* Disable ALL pointer events in grid-info */
   .grid-item-wrapper .grid-info,
   .grid-item-wrapper .grid-info * {
     pointer-events: none !important;
@@ -859,5 +858,14 @@ section.bg-grey .square-right:after {
   .grid-info a:not(.btn) {
     pointer-events: none !important;
     user-select: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-item:hover .grid-info,
+  .grid-item:hover::before {
+    opacity: 0 !important;
+    top: initial !important;
+    transition: none !important;
   }
 }
