@@ -51,7 +51,7 @@
                     <a class="nav-link" href="#title">Home</a>
                 </li> &nbsp; -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#portfolio-lower">Portfolio</a>
+                    <a class="nav-link" href="#portfolio-lower">12:14 Portfolio</a>
                 </li> &nbsp;
                 <li class="nav-item">
                     <a class="nav-link" href="#skillsets-lower">Skill Sets</a>
@@ -923,6 +923,8 @@
 
         for (const item of items) {
           const rect = item.getBoundingClientRect();
+          item.offsetHeight;
+          item.style.outline = "0px solid transparent"; // harmless but triggers style pass
           const fullyVisible = rect.top >= 0 && rect.bottom <= screenHeight;
           if (!fullyVisible) continue;
 
@@ -955,6 +957,8 @@
         // Deactivate anything that's been active long enough and is no longer in the deactivation band
         for (const [item, activatedAt] of activeItems.entries()) {
           const rect = item.getBoundingClientRect();
+          item.offsetHeight;
+          item.style.outline = "0px solid transparent"; // harmless but triggers style pass
           const midpoint = rect.top + rect.height / 2;
           const fullyVisible = rect.top >= 0 && rect.bottom <= screenHeight;
 
