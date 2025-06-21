@@ -79,7 +79,7 @@
         Space Electronics and Mechanical Product Design Engineer at Boeing. 
         <br> BS in Mechanical Engineering from Columbia University, TBP Engineering Honor Society, Magna Cum Laude.
         <br>Excited by product design, robotics, aerospace, and renewable energy.
-        <br> 4:55
+        <br> 5:02
         </p>
         <p2 align-items-center>
 
@@ -907,24 +907,20 @@
     if (window.innerWidth < 768) {
       const items = document.querySelectorAll('.grid-item-wrapper');
       const activeItems = new Map(); // Map<HTMLElement, activationTimestamp>
-      updateActiveItem.lastScrollY = window.pageYOffset;
 
       function updateActiveItem() {
         const now = Date.now();
         const screenHeight = window.innerHeight;
 
-        const activateTop = screenHeight * 0.35;
+        const activateTop = screenHeight * 0.40;
         const activateBottom = screenHeight * 0.60;
 
-        const deactivateTop = screenHeight * 0.30;
+        const deactivateTop = screenHeight * 0.35;
         const deactivateBottom = screenHeight * 0.65;
 
         const screenCenter = screenHeight / 2;
 
         const newlyQualified = [];
-
-        const didScroll = window.pageYOffset !== updateActiveItem.lastScrollY;
-        updateActiveItem.lastScrollY = window.pageYOffset;
 
         for (const item of items) {
           const rect = item.getBoundingClientRect();
@@ -933,11 +929,12 @@
 
           const midpoint = rect.top + rect.height / 2;
 
-          // Activation zone
+          // Check if qualifies for activation
           if (midpoint >= activateTop && midpoint <= activateBottom) {
             newlyQualified.push({
               item,
               distanceToCenter: Math.abs(midpoint - screenCenter),
+              midpoint
             });
           }
         }
@@ -945,24 +942,26 @@
         // Sort by closeness to center
         newlyQualified.sort((a, b) => a.distanceToCenter - b.distanceToCenter);
 
-        // Activate newly qualified items
+        // Activate all that qualify
         for (const { item } of newlyQualified) {
           if (!activeItems.has(item)) {
             item.classList.add('active');
             activeItems.set(item, now);
           } else {
-            activeItems.set(item, now); // refresh timestamp
+            // Refresh timer if still active
+            activeItems.set(item, now);
           }
         }
 
-        // Deactivate expired items — ONLY if the user actually scrolled
+        // Deactivate anything that's been active long enough and is no longer in the deactivation band
         for (const [item, activatedAt] of activeItems.entries()) {
           const rect = item.getBoundingClientRect();
           const midpoint = rect.top + rect.height / 2;
           const fullyVisible = rect.top >= 0 && rect.bottom <= screenHeight;
+
           const inDeactivateBand = midpoint >= deactivateTop && midpoint <= deactivateBottom;
 
-          if ((!fullyVisible || !inDeactivateBand) && now - activatedAt >= 500 && didScroll) {
+          if ((!fullyVisible || !inDeactivateBand) && now - activatedAt >= 500) {
             item.classList.remove('active');
             activeItems.delete(item);
           }
