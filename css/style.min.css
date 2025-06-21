@@ -862,11 +862,24 @@ section.bg-grey .square-right:after {
 }
 
 @media (max-width: 767px) {
- .grid-item:hover .grid-info,
-.grid-item:hover::before,
-.grid-item-wrapper:hover::before {
-  opacity: 0 !important;
-  top: initial !important;
-  transition: none !important;
+  /* FULLY disable sticky hover visuals on mobile */
+  .grid-item-wrapper:hover .grid-info,
+  .grid-item-wrapper:hover::before {
+    opacity: 0 !important;
+    top: initial !important;
+    transition: none !important;
+    pointer-events: none !important;
+  }
+
+  /* Also kill hover on grid-item (redundant but safe) */
+  .grid-item:hover .grid-info,
+  .grid-item:hover::before {
+    opacity: 0 !important;
+    top: initial !important;
+    transition: none !important;
+    pointer-events: none !important;
+  }
 }
+.grid-item-wrapper:hover {
+  outline: 2px dashed red;
 }
